@@ -1,0 +1,45 @@
+plugins {
+    id "com.android.application"
+    // FlutterFire Configuration
+    id 'com.google.gms.google-services'
+    id "kotlin-android"
+    // Flutter Gradle Plugin
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+android {
+    namespace = "com.commcart.commcart"
+    compileSdk = flutter.compileSdkVersion // Ensure this is correctly defined in flutter.gradle
+
+    ndkVersion = flutter.ndkVersion // Make sure `flutter.ndkVersion` is defined in the Flutter Gradle file
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11 // Updated to Java 11 for better compatibility
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+
+    kotlinOptions {
+        jvmTarget = "11" // Kotlin requires a string representation of the JVM target version
+    }
+
+    defaultConfig {
+        applicationId = "com.commcart.commcart"
+        minSdkVersion = 23
+        targetSdk = flutter.targetSdkVersion // Ensure this is defined in Flutter Gradle
+        versionCode = flutter.versionCode // Ensure these variables are defined in Flutter Gradle
+        versionName = flutter.versionName
+    }
+
+    buildTypes {
+        release {
+            // Add signing configuration for release builds if applicable
+            signingConfig = signingConfigs.debug // Replace this with a proper release signingConfig
+            minifyEnabled false // Set to true and configure ProGuard for release builds if needed
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+flutter {
+    source = "../.." // Flutter source directory
+}

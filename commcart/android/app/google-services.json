@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "603765115134",
+    "project_id": "commcart-16",
+    "storage_bucket": "commcart-16.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:603765115134:android:5e82bd89544679b2d37daf",
+        "android_client_info": {
+          "package_name": "com.commcart.commcart"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0w1a4zaNV1P4ABcsWyOXTjLYCejjzDFM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
