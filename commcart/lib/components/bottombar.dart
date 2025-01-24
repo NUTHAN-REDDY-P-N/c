@@ -4,14 +4,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CustomNavBarCurved extends StatefulWidget {
-  const CustomNavBarCurved({super.key});
+  final int selectedIndex;
+  CustomNavBarCurved({super.key, this.selectedIndex = 0});
 
   @override
   CustomNavBarCurvedState createState() => CustomNavBarCurvedState();
 }
 
 class CustomNavBarCurvedState extends State<CustomNavBarCurved> {
-  int _selectedIndex = 0;
+  late int _selectedIndex;
+
   // Track selected index
 
   // Update index when an item is tapped
@@ -27,11 +29,13 @@ class CustomNavBarCurvedState extends State<CustomNavBarCurved> {
             context,
             MaterialPageRoute(builder: (context) => HomeScreen()),
             (route) => false);
+
         // Navigate to Home
         break;
       case 1:
         Navigator.pushAndRemoveUntil(context,
             MaterialPageRoute(builder: (context) => items()), (route) => false);
+
         break;
       case 2:
         // Navigate to Cart
@@ -44,6 +48,7 @@ class CustomNavBarCurvedState extends State<CustomNavBarCurved> {
 
   @override
   Widget build(BuildContext context) {
+    _selectedIndex = widget.selectedIndex;
     Size size = MediaQuery.of(context).size;
     double height = 56;
 

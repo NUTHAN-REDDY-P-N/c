@@ -42,7 +42,7 @@ class _commCartState extends State<commCart> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: '/signUp',
+      initialRoute: '/login',
       routes: {
         '/signUp': (context) => SignUp(),
         '/home': (context) => HomeScreen(),

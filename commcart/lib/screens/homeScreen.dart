@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:commcart/components/bottombar.dart';
 import 'package:commcart/firestore/provider.dart';
 import 'package:commcart/offers/coupons.dart';
@@ -20,8 +21,9 @@ class _HomeScreenState extends State<HomeScreen> {
     if (_isInit) {
       final productsProvider =
           Provider.of<ProductsProvider>(context, listen: false);
-      productsProvider.fetchItems(); // Fetch data only once
+      productsProvider.fetchAllCategories(); // Fetch data only once
       _isInit = false;
+      print('items fetched');
     }
   }
 
@@ -39,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return SafeArea(
         child: Scaffold(
-            bottomNavigationBar: CustomNavBarCurved(),
+            bottomNavigationBar: CustomNavBarCurved(selectedIndex: 0),
             body:
                 Consumer<ProductsProvider>(builder: (context, provider, child) {
               {
@@ -101,7 +103,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: Align(
                               alignment: Alignment.centerLeft,
                               child: Text(
-                                'Shop by category',
+                                ' Shop by category',
                                 style: TextStyle(
                                     color: const Color.fromARGB(206, 0, 0, 0),
                                     fontSize: 25),
@@ -109,28 +111,48 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                           SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.14,
+                            height: MediaQuery.of(context).size.height * 0.19,
                             width: MediaQuery.of(context).size.width * 0.99,
                             child: ListView.builder(
                               scrollDirection: Axis.horizontal,
                               itemBuilder: (context, index) {
-                                return Card(
-                                    child: Column(
+                                return Column(
                                   children: [
-                                    Center(
-                                      child: Container(
-                                        color: const Color.fromARGB(
-                                            255, 199, 201, 202),
-                                        height:
-                                            MediaQuery.of(context).size.height *
-                                                0.13,
-                                        width:
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          8.0, 8, 0, 0),
+                                      child: CircleAvatar(
+                                        radius:
                                             MediaQuery.of(context).size.width *
-                                                0.25,
+                                                0.15,
                                       ),
                                     ),
+                                    Text(productsProvider.allItems.keys
+                                        .elementAt(index))
                                   ],
-                                ));
+                                );
+                              },
+                              itemCount: productsProvider.allItems.keys.length,
+                            ),
+                          ),
+                          Align(
+                            alignment: Alignment.bottomLeft,
+                            child: Text(
+                              '   Top deals',
+                              style: TextStyle(
+                                  color: const Color.fromARGB(206, 0, 0, 0),
+                                  fontSize: 25),
+                            ),
+                          ),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height,
+                            width: MediaQuery.of(context).size.width,
+                            child: ListView.builder(
+                              itemBuilder: (context, index) {
+                                return Container(
+                                  height: 200,
+                                  child: Card(),
+                                );
                               },
                               itemCount: 5,
                             ),

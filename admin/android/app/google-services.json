@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "603765115134",
+    "project_id": "commcart-16",
+    "storage_bucket": "commcart-16.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:603765115134:android:918fdb5f98a42279d37daf",
+        "android_client_info": {
+          "package_name": "com.commcart.admin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "603765115134-mgm64fmj6803hngv4ajf3tjohjnef2au.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0w1a4zaNV1P4ABcsWyOXTjLYCejjzDFM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "603765115134-mgm64fmj6803hngv4ajf3tjohjnef2au.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "603765115134-iupmef0tl5bt3tpe287o4otm333i3gud.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.commcart.commcart"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:603765115134:android:5e82bd89544679b2d37daf",
+        "android_client_info": {
+          "package_name": "com.commcart.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "603765115134-mgm64fmj6803hngv4ajf3tjohjnef2au.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0w1a4zaNV1P4ABcsWyOXTjLYCejjzDFM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "603765115134-mgm64fmj6803hngv4ajf3tjohjnef2au.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "603765115134-iupmef0tl5bt3tpe287o4otm333i3gud.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.commcart.commcart"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

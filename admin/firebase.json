@@ -1,0 +1,43 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "commcart-16",
+          "appId": "1:603765115134:android:918fdb5f98a42279d37daf",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "commcart-16",
+          "configurations": {
+            "android": "1:603765115134:android:918fdb5f98a42279d37daf",
+            "ios": "1:603765115134:ios:bdb32b6860903dfdd37daf",
+            "macos": "1:603765115134:ios:bdb32b6860903dfdd37daf",
+            "web": "1:603765115134:web:075aac4b634477b9d37daf",
+            "windows": "1:603765115134:web:81a0426ebce54320d37daf"
+          }
+        }
+      }
+    }
+  },
+  "firestore": {
+    "rules": "build/web",
+    "indexes": "web/build"
+  },
+  "hosting": {
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

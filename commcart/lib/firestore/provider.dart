@@ -2,37 +2,67 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class ProductsProvider with ChangeNotifier {
-  Map<String, List<Map<String, dynamic>>> _items = {};
+  Map<String, List<Map<String, dynamic>>> _allItems =
+      {}; // Holds all categories and their items
   bool _isLoading = false;
 
-  Map<String, List<Map<String, dynamic>>> get Items => _items;
+  Map<String, List<Map<String, dynamic>>> get allItems => _allItems;
   bool get isLoading => _isLoading;
 
-  void fetchItems() {
+  /// Fetch all categories and their items.
+  void fetchAllCategories() {
     _isLoading = true;
     notifyListeners();
 
+    _allItems = {}; // Clear existing items
+
+    // Fetch category names dynamically
     FirebaseFirestore.instance
-        .collection('products')
-        .snapshots() // Listen for real-time updates
-        .listen((querySnapshot) {
-      _items = {}; // Clear existing items
+        .collection('commcart') // Main collection
+        .doc('IIT MADRAS') // Document for IIT MADRAS
+        .collection('products') // Sub-collection "products"
+        .get()
+        .then((categorySnapshot) {
+      // Iterate through each category document to get the category names
+      List<String> categoryNames = categorySnapshot.docs
+          .map((doc) => doc.id) // Extract category names (doc IDs)
+          .toList();
 
-      for (var doc in querySnapshot.docs) {
-        final data = doc.data();
-        print('hi $data');
-        if (data.containsKey('T-shirts')) {
-          _items['T-shirts'] =
-              List<Map<String, dynamic>>.from(data['T-shirts']);
-        }
-      }
+      // Now fetch items for each category
+      Future.wait(categoryNames.map((categoryName) {
+        return FirebaseFirestore.instance
+            .collection('commcart') // Main collection
+            .doc('IIT MADRAS') // Document for IIT MADRAS
+            .collection('products') // Sub-collection "products"
+            .doc(categoryName) // Dynamic category name
+            .collection('items') // Final sub-collection "items"
+            .get()
+            .then((querySnapshot) {
+          // Add items for this category
+          _allItems[categoryName] = querySnapshot.docs.map((doc) {
+            final data = doc.data();
+            print(' $data'); // Debug log
+            return data as Map<String, dynamic>;
+          }).toList();
 
-      _isLoading = false;
-      notifyListeners(); // Notify UI of changes
-    }, onError: (error) {
+          notifyListeners(); // Notify UI after updating each category
+        }).catchError((error) {
+          print("Error fetching items for category $categoryName: $error");
+        });
+      })).then((_) {
+        // Once all category data is fetched, set loading to false
+        _isLoading = false;
+        notifyListeners();
+      }).catchError((error) {
+        // Handle any errors in fetching categories or items
+        print("Error fetching categories: $error");
+        _isLoading = false;
+        notifyListeners();
+      });
+    }).catchError((error) {
+      print("Error fetching category names: $error");
       _isLoading = false;
       notifyListeners();
-      print("Error fetching items: $error");
     });
   }
 }

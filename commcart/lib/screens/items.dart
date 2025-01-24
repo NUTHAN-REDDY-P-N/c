@@ -12,7 +12,7 @@ class _itemsState extends State<items> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: CustomNavBarCurved(),
+      bottomNavigationBar: CustomNavBarCurved(selectedIndex: 1),
       appBar: AppBar(
         title: Text(
           'All categories',
