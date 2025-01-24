@@ -1,4 +1,5 @@
 import 'package:commcart/firebase_services/authentication.dart';
+import 'package:commcart/firebase_services/authentication_google.dart';
 import 'package:commcart/screens/homeScreen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -278,6 +279,20 @@ class _SignUpState extends State<SignUp> {
                                                 0.02,
                                       ),
                                       GestureDetector(
+                                        onTap: () {
+                                          signInWithGoogle().then(
+                                            (value) => {
+                                              if (value != null)
+                                                {
+                                                  Navigator.pushReplacement(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              HomeScreen()))
+                                                }
+                                            },
+                                          );
+                                        },
                                         child: Container(
                                           height: MediaQuery.of(context)
                                                   .size

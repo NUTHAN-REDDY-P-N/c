@@ -1,4 +1,6 @@
 import 'package:commcart/firebase_services/authentication.dart';
+import 'package:commcart/firebase_services/authentication_google.dart';
+import 'package:commcart/screens/homeScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -396,6 +398,11 @@ class _loginInState extends State<loginIn> {
                                                 0.02,
                                       ),
                                       GestureDetector(
+                                        onTap: () {
+                                          signInWithGoogle().then(
+                                            (value) => {if (value != null) {}},
+                                          );
+                                        },
                                         child: Container(
                                           height: MediaQuery.of(context)
                                                   .size
